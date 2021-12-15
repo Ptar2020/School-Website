@@ -1,0 +1,20 @@
+	{% extends "base.html" %}
+
+{% block title %} FGUGS || Delete Photo {{ object.id }} {% endblock %}
+{% block content %}
+	<article class="container edit_details" >
+	<div class="btn-primary" style="padding:10px;border-radius:10px">Photo - {{ object.id }}</div>
+	<hr>
+	  <div class="form-group">
+	    <form method="POST">
+		  {% csrf_token %}
+		  
+		  <div style="max-width:600px;margin:auto"><strong style="margin-right:100px">Are you sure to delete photo {{ object.id }}?</strong>
+		<button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Deletes the photo">Yes</button>
+		 <a href="{% url 'photo_detail' object.pk %}" class="btn btn-primary" style="float:right" title="Takes you back to photo details">No</a>
+		 </div>
+	</form>
+	
+	  </div>
+	</article>
+{% endblock %}

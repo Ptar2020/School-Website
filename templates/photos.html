@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || Photos{% endblock %}
+{% block content %}
+
+<!--
+<div class="alert alert-primary" role="alert" style="text-align: center">
+	<b>PHOTOS
+		{% if user.is_authenticated %}
+		<a href="{% url 'add_photo' %}" style="margin:30px;font-size:16px" class="container">Add Photo</a>
+		{% endif %}</b>
+</div><br>
+
+{% for photo in object_list %}
+	   <div class="container photo_gallery">
+	   	{% if photo.Photo %}
+	   		{% if user.is_authenticated %}
+			<a href="{% url 'delete_photos' photo.id %}" style="color:red">Delete</a><br>
+			{% endif %}
+			<a href ="{% url 'photo_detail' photo.pk %}" title="Click to enlarge photo" ><img src="{{ photo.Photo.url }}" height="320px" width="330px"> </a>
+		{% endif %}
+	   </div>	
+	{% endfor %}
+
+
+
+-->
+
+<div class="alert alert-primary" role="alert" style="text-align: center">
+	<b>PHOTOS
+		{% if user.is_authenticated %}
+		<a href="{% url 'add_photo' %}" style="margin:30px;font-size:16px" class="container">Add Photo</a>
+		{% endif %}</b>
+</div><br>
+
+<div class="container photo_gallery">
+	{% for photo in object_list %}
+	<div style="text-align:center;">
+			{% if photo.Photo %}
+				<a href ="{% url 'photo_detail' photo.pk %}" title="Click to enlarge photo" ><img src="{{ photo.Photo.url }}" height="350px" width="350px" style="object-fit:cover"> </a><hr>
+			{% endif %}
+	</div>
+	{% endfor %}
+</div><br>
+{% endblock %}

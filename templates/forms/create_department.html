@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} FGUGS || New Department {% endblock %}
+{% block content %}
+<hr>
+<article class="container edit_details" >
+	<div class="btn-primary" style="padding:10px;border-radius:10px;text-align:center">New Department</div>
+	<hr>
+
+	<div class="">
+	  <div class="form-group alert alert-primary" style="border-radius:20px">
+	    <form method="POST" enctype="multipart/form-data">
+		  {% csrf_token %}
+		  {{ form.media }}
+		  {{ form.as_p }}
+		<button class="btn btn-outline-primary">Create</button>
+		<a href="{% url 'departments' %}" class="btn btn-outline-primary" style="float:right">Back</a>
+		<br><hr>
+	  </div>
+	</div>
+</article>
+<script>
+	var name = '{{ user.id }}';
+	document.getElementById('identifier').value = name;
+</script>
+ {% endblock %}

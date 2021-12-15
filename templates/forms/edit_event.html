@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} FGUGS || Update {{ object.event_title}} {% endblock %}
+{% block content %}
+<article class="container edit_details" >
+	<div class="btn-primary" style="padding:10px;border-radius:10px;text-align:center">Edit/Update {{ object.event_title}}</div>
+	<hr>
+
+	<div>
+	  <div class="form-group">
+	    <form method="POST" enctype="multipart/form-data">
+		  {% csrf_token %}
+		  {{ form.media }}
+		  {{ form.as_p }}
+		<button class="btn btn-outline-primary">Save</button>
+		<a href="{% url 'event_details' object.pk %}" class="btn btn-outline-primary" style="float:right" title="Takes you back to all the events">Back</a><br><hr>
+	  </div>
+	</div>
+</article>
+{% endblock %}

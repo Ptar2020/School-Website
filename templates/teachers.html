@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || Teachers{% endblock %}
+{% load static %}
+{% block content %}
+<h3 style="text-align:center" class="alert alert-primary" role="alert">TEACHERS AT FR GULIK URADI GIRLS 
+	{% if user.is_authenticated %}
+		<a href="{% url 'add_teacher' %}" style="margin:30px;font-size:16px" class="container">Add</a>
+	{% endif %}
+</h3>
+
+<div class="container teachers">
+	
+	{% for item in items %}
+	<div>
+		{% if item.Teachers_photo %}
+			<a href="{% url 'teacher_detail' item.pk %}">
+			<img src = "{{ item.Teachers_photo.url }}" width="350px" height="350px" style="object-fit:cover">
+			</a><br>
+		{% endif %}<br>
+	<b></b>{{ item.Teachers_name }}<br>
+	
+	{% if user.is_authenticated %}<p>
+		<a href="{% url 'update_teacher' item.id %}">Edit</a> || 
+		<a href="{% url 'delete_teacher' item.id %}">Delete</a></p>
+	{% endif %}<br>
+	<p><a href="{% url 'teacher_detail' item.pk %}" class="btn btn-danger">More...</a></p><hr>
+	</div>
+	{% empty %}
+		<h4 style="padding:40px;text-align:center;color:gray"><i>No data to display</i></h4>
+	{% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || Photos{% endblock %}
+{% block content %}
+<div class="alert alert-primary" role="alert" style="text-align: center">
+	<b>PHOTOS
+	{% if user.is_authenticated %}
+	{% for photo in bphotos %}
+		
+	<a href="{% url 'backgrounds' photo.id %}" style="margin:30px;font-size:16px" class="container">Edit</a>
+	{% empty %}
+	<a href="{% url 'create_bg' %}" style="margin:30px;font-size:16px" class="container">Create</a></b>
+	{% endfor %}
+	{% endif %}
+	{% for photo in bphotos %}
+</div><br>
+<div style="min-height:450px;columns: 400px 2" class="container">
+	
+	<img src="{{ photo.photo1.url }}" length='250px' width="250px" id="photo1" ><br>
+	{{ photo.photo1_Description }}<br>	<hr>
+	<img src="{{ photo.photo2.url }}" length='250px' width="250px" id="photo2"><br>
+	{{ photo.photo2_Description }}<hr>
+	<img src="{{ photo.photo3.url }}" length='250px' width="250px" id="photo3"><br>
+	{{ photo.photo3_Description }}<hr>
+	<img src="{{ photo.photo4.url }}" length='250px' width="250px" id="photo4"><br>
+	{{ photo.photo4_Description }}<hr>
+	<img src="{{ photo.photo5.url }}" length='250px' width="250px" id="photo5"><br>
+	{{ photo.photo5_Description }}<hr>
+	{% endfor %}
+</div><br>
+{% endblock %}

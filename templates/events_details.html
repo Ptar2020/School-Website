@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || {{ object.event_title }} {% endblock %}
+{% block content %}
+<div class="edit_details">
+	<div class="container alert alert-danger" style="border-radius:20px">
+		Event Details - {{ object.event_title }}  
+		{% if user.is_authenticated %}
+			<a href="{% url 'update_event' object.pk %}">Edit</a> || 
+			<a href="{% url 'delete_event' object.pk %}">Delete</a>
+		{% endif %}
+	</div>
+		<div class="container alert alert-primary" style="border-radius:20px">
+			<p>Event posted on <b>{{ object.post_date }}</b></p>
+			<p>Event happening on <b>{{ object.event_date }}</b></p>
+			<p>Event Title: <b>{{ object.event_title }}</b></p><hr>
+
+			<p><b>Event Details</b></p>
+			{{ object.event_description|safe }}
+		</div>
+</div>
+{% endblock %}

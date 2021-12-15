@@ -1,0 +1,20 @@
+	{% extends "base.html" %}
+
+{% block title %} FGUGS || Delete {{ object.event_title}} {% endblock %}
+{% block content %}
+	<article class="container edit_details" >
+	<div class="btn-primary" style="padding:10px;border-radius:10px">Delete {{ object.event_title}}</div>
+	<hr>
+	  <div class="form-group">
+	    <form method="POST">
+		  {% csrf_token %}
+		  
+		  <div style="max-width:700px;margin:auto"><strong style="margin-right:60px">Are you sure to delete {{ object.event_title}}?</strong>
+		<button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Deletes event {{ object.event_title}}">Yes</button>
+		 <a href="{% url 'event_details' object.pk %}" class="btn btn-primary" style="float:right" title="Takes you back to all the events">No</a>
+		 </div>
+	</form>
+	
+	  </div>
+	</article>
+{% endblock %}

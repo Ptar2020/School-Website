@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %} DETAILS || {{ object.Name_of_department }}{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="alert alert-primary"style="text-align: center">
+	<b>DEPARTMENT  - {{ object.Name_of_department }}</b>
+	<!--
+	{% if user.is_authenticated %}
+	 	 <a href="{% url 'edit_department' object.id %}">Edit</a> || 
+		<a href="{% url 'delete_department' object.pk %}">Delete</a>
+	
+	{% endif %}-->
+
+	{% if user.id == departmentsmodel.author.id %}
+	 	<a href="{% url 'edit_department' object.id %}">Edit</a> || 
+		<a href="{% url 'delete_department' object.pk %}">Delete</a>
+	{% endif %}
+
+</div><br>
+
+<div class="container alert alert-secondary" style="min-height:200px;border-radius:20px">
+	<div class="row">
+		<div class="container alert alert-primary tech1" role="alert" style="border-radius:10px">
+			<b>HOD : </b>{{ object.HOD }}<br><hr>
+
+			{% if object.Assistant_1 %}
+			<b>Teachers in {{ object.Name_of_department }}</b><hr>
+				<ul>
+					<li>{{ object.Assistant_1 }}{% endif %}</li>
+					{% if object.Assistant_2 %}<li>{{ object.Assistant_2 }}{% endif %}</li>
+					{% if object.Assistant_3 %}<li>{{ object.Assistant_3 }}{% endif %}</li>
+					{% if object.Assistant_4 %}<li>{{ object.Assistant_4 }}{% endif %}</li>
+					{% if object.Assistant_5 %}<li>{{ object.Assistant_5 }}{% endif %}</li>
+					{% if object.Assistant_6 %}<li>{{ object.Assistant_6 }}{% endif %}</li>
+					{% if object.Assistant_7 %}<li>{{ object.Assistant_7 }}{% endif %}</li>
+					{% if object.Assistant_8 %}<li>{{ object.Assistant_8 }}{% endif %}</li>
+					{% if object.Assistant_9 %}<li>{{ object.Assistant_9 }} ||{% endif %}</li>
+					{% if object.Assistant_10 %}<li>{{ object.Assistant_10 }}{% endif %}</li>
+				</ul><br>
+		</div>
+	{% if object.Subject_1 %}
+	<div class="container alert alert-primary tech2" style="border-radius:10px">
+		
+				<b>Subjects in {{ object.Name_of_department }}</b><hr>
+					<ul>
+						<li>{{ object.Subject_1 }}{% endif %}</li>
+						{% if object.Subject_2 %}<li>{{ object.Subject_2 }}{% endif %}</li>
+						{% if object.Subject_3 %}<li>{{ object.Subject_3 }}{% endif %}</li>
+						{% if object.Subject_4 %}<li>{{ object.Subject_4 }}{% endif %}</li>
+						{% if object.Subject_5 %}<li>{{ object.Subject_5 }}{% endif %}</li>
+						{% if object.Subject_6 %}<li>{{ object.Subject_7 }}{% endif %}</li>
+					</ul><br>
+	</div>
+</div>
+<hr>
+
+<div class="container alert alert-primary" role="alert" style="border-radius:20px">
+	<b>About {{ object.Name_of_department }}</b><hr>{{ object.About|safe }}</div>
+</div>
+
+
+{% endblock %}

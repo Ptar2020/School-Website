@@ -1,0 +1,21 @@
+	{% extends "base.html" %}
+
+{% block title %} FGUGS || Delete File {% endblock %}
+{% block content %}
+	<article class="container" >
+	<div class="btn-primary" style="padding:10px;border-radius:10px">Delete File</div>
+	<hr>
+	<h3>Delete {{ event.name }}</h3>
+
+	  <div class="form-group">
+	    <form method="POST">
+		  {% csrf_token %}
+		  
+		  <div style="max-width:500px;margin:auto"><strong style="margin-right:100px">Delete?</strong>
+		<button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Deletes the file" onclick="return confirm('This file will be deleted')">Yes</button>
+		 <a href="{% url 'all_downloads' %}" class="btn btn-primary" style="float:right" title="Takes you back to all the downloads">Downloads</a>
+		 </div>
+	</form>
+	  </div>
+	</article>
+{% endblock %}

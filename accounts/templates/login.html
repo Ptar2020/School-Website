@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} FGUGS || Login {% endblock %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> USER LOGIN</title>
+</head>
+<body><br>
+	<div class="alert alert-primary" role="alert" style="border-radius:25px;padding:15px;width:100%;max-width:900px;margin:auto">
+	<div class="alert alert-primary" role="alert">
+		<h4 class="container" style="text-align:center"><i class="fa fa-user"></i> USER LOGIN</h4>
+	</div>
+
+	<div class="container" style="text-align:center" >
+	{% for message in messages %}
+		<h5 class="alert alert-info">{{ message }}</h5>
+	{% endfor %}
+	</div>
+<form action='login' method="post" class="container">
+	{% csrf_token %}
+	Username : <input type="text" name="username" placeholder="Username" class="form form-control" required="required"><br>
+	Password : <input type="password" name="password" placeholder="Your Password" class="form form-control" required="required"><br><hr>
+	<input type="submit" value="LOGIN" class="form form-control btn btn-outline-primary">
+</form><br>
+
+<form class="container">
+	<a href="{% url 'register' %}">
+		<span class="btn btn-success" role="alert" onclick="return confirm('You have not logged in, do you want to leave this page?');">Register Here</span></a>
+	<a href="{% url 'password_reset' %}">
+		<span class="btn btn-danger" role="alert" style="float:right">Forgot Password</span></a>
+</form>
+
+
+</html>
+
+</div>
+<!--
+{% for message in messages %}
+<script>
+	alert("{{ message }}")
+</script>
+{% endfor %}-->
+</body>
+{% endblock %}

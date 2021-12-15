@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %} FGUGS || Search Results {% endblock %}
+{% block content %}
+<hr>
+<article class="container search_results" >
+	
+		
+
+		<!-- Search logic here-->
+			<div class="alert alert-primary">
+				{% for message in messages %}
+		          {{ message }}
+		        {% endfor %}
+
+
+
+		 <div style="color:black">
+			{% if results1 or results2 or results3 %}
+				Search  results for <b>{{querry}}</b><hr>
+			
+				{% for item in results1 %}
+					{% if Teachers_photo %}
+						<img src="{{ item.Teachers_photo.url }}">  <br>
+					{% endif %}
+					Designation: <i>{{ item.Designation }}</i> <br>
+					Name: <i>{{ item.Teachers_name }}</i> <br>
+					Employer:<i>{{ item.Employer }}</i> <br>
+					Subjects:<i>{{ item.Teachers_first_subject }}</i> || <i>{{ item.Teachers_second_subject }}</i> <br>
+					Gender: <i>{{ item.Gender }}</i><hr>
+	
+				{% endfor %}
+		
+			
+				{% for item in results2 %}
+					School Phone: <i>{{ item.Phone_1 }}</i> <hr>
+				{% endfor %}
+
+				{% for item in results3 %}
+					<i><a href="{{ item.File.url }}"> {{ item.File_Name }}</a></i> <hr>
+				{% endfor %}
+			{% else %}
+				Nothing  matches your search for <i>{{ querry }}</i>.
+			{% endif %}
+		
+			</div></div>
+			
+</article>
+ {% endblock %}

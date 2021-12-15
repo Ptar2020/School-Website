@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || Downloads{% endblock %}
+{% load static %}
+{% block content %}
+<div class="alert alert-primary" role="alert">
+<h4 class="container" style="text-align:center">All File Downloads
+	{% if user.is_authenticated %}
+		<a href="{% url 'add_file' %}" style="float:left;font-size:17px">
+					<i class="fa fa-plus"></i> File</a>
+	{% endif %}
+</h4>
+</div>
+
+<div style="min-height:350px;columns:200px 2;overflow-y:scroll;" class="container alert alert-default" role="alert">
+	{% for item in file %}
+		{% if item.File_Name %}
+		 <a href=" {{ item.File.url }}">  {{ item.File_Name }}</a><br>
+		 {% if user.is_authenticated %}
+				<a href="{% url 'update_file' item.id %}" style="color:grey">Edit</a> || 
+				<a href="{% url 'delete_file' item.id %}" style="color:red">Delete</a><hr>
+		 {% endif %}
+		{% endif %}
+	{% empty %}<br><br>
+	<h6><i>No files to download yet</i></h6><br><br>
+	{% endfor %}
+</div>
+{% endblock %}

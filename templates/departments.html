@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || Departments{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="alert alert-primary" role="alert" style="text-align:center;font-size:20px"><b>DEPARTMENTS
+	{% if user.is_authenticated %}
+		 || <a href="{% url 'create_department' %}">Create Department</a>
+	{% endif %}
+</div><br>
+
+<div class="container alert alert-secondary department_details" role="alert">
+	<ol>
+		{% for item in departments %}
+			<li>
+				<p><b>Department : </b>{{ item.Name_of_department }}</p>
+				<p><b>Headed By : </b>{{ item.HOD }}</p>
+				<p><a href="{% url 'department_details' item.pk %}" class="btn btn-primary">Details...</a></p>
+			</li> <hr>	
+		{% endfor %}
+	</ol>
+</div>
+{% endblock %}

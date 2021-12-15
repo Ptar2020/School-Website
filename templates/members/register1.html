@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} FGUGS || Register a New User {% endblock %}
+{% block content %}
+<div class="alert alert-primary" role="alert" style="border-radius:25px;width:100%;max-width:900px;margin:auto">
+		<form class="container" style="text-align:center">
+		<strong><i class="fa fa-user"></i><i> USER REGISTRATION</i></strong><hr>
+			{% for message in messages %}
+				<h5 class="aler alert-error" style="color:blue;text-align:center">{{ message }}</h5>
+			{% endfor %}
+		</form>
+	<form action='register' method='POST' class="container">
+	{% csrf_token %}
+	First Name : <input type="text" name="first_name" placeholder='First Name' required='required' class="form form-control"><br>
+	Last Name : <input type="text" name="last_name"placeholder='Last Name' required='required' class="form form-control"><br>
+	Username : <input type="text" name="username"placeholder='Username' required='required' class="form form-control"><br>
+	Email : <input type="email" name="email"placeholder='Email Address' required='required' class="form form-control"><br>
+	Password : <input type="password" name="password"placeholder='Password' required='required' class="form form-control"><br>
+	Confirm Password : <input type="password" name="password_confirmation"placeholder='Password Confirmation' required='required' class="form form-control"><br>
+	<input type="submit" value="Register" class="form form-control btn btn-outline-primary">
+</form><hr>
+
+<form class="container">Already registered?
+	<a href="{% url 'login' %}" onclick="return confirm('Confirm Exit?');"><b>Login</b></h6></form>
+</div>
+{% endblock %}

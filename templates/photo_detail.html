@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || Photo - {{ object.id }}{% endblock %}
+{% block content %}
+
+<div class="container alert alert-danger">
+	{% if user.is_authenticated %}
+		<a href="{% url 'update_photos' object.pk %}">Edit</a> || 
+		<a href="{% url 'delete_photos' object.pk %}">Delete</a>
+	{% endif %}
+</div>
+
+{% if object.Description %}
+	<div class="container alert alert-primary" style="text-align:left">
+		<b><p>About the photo </b></p>
+		{{ object.Description|safe }}
+	</div>
+{% endif %}<hr>
+
+<div style="text-align:center">
+	<img src="{{ object.Photo.url }}" height="70%" width="70%">
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || About{% endblock %}
+{% block content %}
+<h5 class="alert alert-primary" role="alert" style="text-align:center">	ABOUT FR. GULIK URADI GIRLS
+{% if user.is_authenticated %}  
+{% for detail in about_school %}
+
+<a href="{% url 'update_school' detail.id %}" style="margin:20px;font-size:18px"> Edit</a>
+{% empty %}
+<a href="{% url 'create_school' %}" style="margin:20px;font-size:18px"> Create</a>
+{% endfor %}
+{% endif %}
+
+</h5><br>
+<div class="container alert alert-primary" role="alert" style="min-height:450px;border-radius:20px">
+
+{% for info in about_school %}
+	<div style="columns:300px 1" >
+		<div class="container alert alert-secondary" role="alert"  id="about_school1">
+		{% if info.S_Name  %}<b>SCHOOL NAME : 	</b>{{ info.S_Name }}{% endif %}<br>
+		{% if info.S_Motto  %}<b>SCHOOL MOTTO : 	</b>{{ info.S_Motto }}{% endif %}<br>
+		{% if info.Vision  %}<b>VISION : 	</b>{{ info.Vision }}{% endif %}<br>
+		{% if info.Mission  %}<b>MISSION : 	</b>{{ info.Mission }}{% endif %}<br>
+		{% if info.Total  %}<b>TOTAL POPULATION : 	</b>{{ info.Total }}{% endif %}<br>
+		{% if info.Streams  %}<b>STREAMS : </b>{{ info.Streams }}{% endif %}<br>
+		{% if info.County  %}<b>COUNTY : </b>{{ info.County }}{% endif %}<br>
+		{% if info.Subcounty  %}<b>SUB-COUNTY : </b>{{ info.Subcounty }}{% endif %}<br>
+		{% if info.Zone  %}<b>ZONE : </b>{{ info.Zone }}{% endif %}<br>
+		{% if info.Sponsor  %}<b>SPONSOR : </b>{{ info.Sponsor }}{% endif %}<br>
+		{% if info.Category  %}<b>CATEGORY : </b>{{ info.Category }}{% endif %}<br>
+		{% if info.Address  %}<b>ADDRESS : </b>{{ info.Address }}{% endif %}<br>
+		</div>
+	</div><br><br>
+	<div id="about_school2"><b>MORE ABOUT THE SCHOOL</b></div><hr>
+	{% if info.About_the_school  %}{{ info.About_the_school|safe }}
+	{% else %}No info provided{% endif %}
+{% endfor %}<hr>
+	</div></div>
+{% endblock %}

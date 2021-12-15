@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+
+<h1>Add a Task</h1>
+<br>
+<div class="container">
+  <div class="row">
+    <form method="POST" action="{% url 'add_event' %}" id="taskForm">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary btn-large">Add</button>
+        {% endbuttons %}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

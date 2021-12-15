@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} FGUGS || Users{% endblock %}
+{% block content %}
+
+<hr>
+<div class="container">
+<div class="alert alert-primary" role="alert" style="border-radius:25px">
+	<span style="margin-left:130px"><b>Authenticated Users</b></span>
+	<a href="{% url 'register' %}" style="margin-left:200px;color:red"><b>Add User</b></a>
+	</div>
+	<ol>
+	{% for user in users %}
+	<li>
+	{{ user.first_name }} {{ user.last_name}} Email : {{ user.email }}
+	{% if user.id == 1 or user.id == 2 or user.id == 18 %}
+	User ID: {{ user.id }} 
+	{% else %} User ID: {{ user.id }} || 
+	<a href="{% url 'delete_user' user.id %}" style="color:red"><b>Delete</b></a>
+	{% endif %}<hr>
+	</li>
+	
+	{% endfor %}
+	</ol>
+</div>
+ {% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+<!-- pip install django-crispy-forms-->
+
+{% block title %} FGUGS || Update User {% endblock %}
+{% block content %}<hr>
+<div class="alert alert-primary">
+<div style="padding:10px;font-size:26px;text-align:center;" class="container">Edit/Update User</div></div>
+<article class="container alert alert-secondary" role="alert" style="border-radius:25px">
+	
+	<hr>
+
+	<div>
+	  <div class="form-group">
+	    <form method="POST">
+		  {% csrf_token %}
+		  {{ form.media }}
+		  {{ form|crispy }}
+		  <hr>
+		  <div style="width:100%;max-width:700px;margin:auto">
+		  <button class="btn btn-primary">Save</button>
+		  <a href="{% url 'home' %}" class="btn btn-danger" style="float:right">
+		 	<i class="fa fa-arrow-up"></i> Home</a>
+		
+		</div>
+
+		<br><hr>
+	  </div>
+	</div>
+</article>
+{% endblock %}

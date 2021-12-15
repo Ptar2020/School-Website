@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} FGUGS || Add File {% endblock %}
+{% block content %}
+<hr>
+<article class="container" >
+	<div class="btn-primary add_file" style="padding:10px;border-radius:10px;">Add File</div>
+	<hr>
+
+	<div>
+	  <div class="form-group">
+	    <form method="POST" enctype="multipart/form-data">
+		  {% csrf_token %}
+		  {{ form.media }}
+		  {{ form.as_p }}
+		<button class="btn btn-outline-primary">Add</button>
+		</form>
+		<br><hr>
+	  </div>
+	</div>
+</article>
+ {% endblock %}

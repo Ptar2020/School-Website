@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %} FGUGS || Contact{% endblock %}
+{% block content %}
+<div class="alert alert-primary" role="alert" style="text-align: center"><b>CONTACT INFORMATION
+	{% if user.is_authenticated %}
+	{% for detail in contacts %}
+	<a href="{% url 'update_contact' detail.id %}" style="margin:20px;font-size:18px" class="container">Edit</a></b>
+	{% empty %}
+	<a href="{% url 'create_contact' %}" style="margin:20px;font-size:18px" class="container">Create</a></b>
+	{% endfor %}
+	{% endif %}
+
+</div><br>
+<div class="container alert alert-primary" role="alert" style="min-height:250px;border-radius:20px">
+{% for contact in contacts %}
+	{% if contact.Phone_1 %} <b>Phone 1 : </b>{{ contact.Phone_1 }}{% endif %}<br>
+	{% if contact.Phone_2 %} <b>Phone 2 : </b>{{ contact.Phone_2 }}{% endif %}<br>
+	{% if contact.Email %} <b>Email : </b>{{ contact.Email }}{% endif %}<br>
+	{% if contact.Address %} <b>Address : </b>{{ contact.Address }}{% endif %}<br>
+
+	{% if contact.Facebook_url %} <b>Facebook : </b>
+	<a href="{{ contact.Facebook_url }}">Facebook </a>{% endif %}<br>
+
+	{% if contact.Twitter_url %} <b>Twitter : </b>
+	<a href="{{ contact.Twitter_url }}">Twitter</a>{% endif %}<br>
+	{% if contact.Instagram_url %} <b>Instagram : </b>
+	<a href="{{ contact.Instagram_url }}">Instagram</a>{% endif %}<br>
+	{% if contact.Other_url %} <b>Other : </b>
+	<a href="{{ contact.Other_url }}">Other</a>{% endif %}<br>
+{% endfor %}
+<hr>
+	
+</div>
+{% endblock %}

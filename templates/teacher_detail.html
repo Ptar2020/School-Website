@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ object.Teachers_name }} || {{ object.Designation }}{% endblock %}
+{% block content %}
+
+<div class="container alert alert-danger">
+	Teacher Details - {{ object.Teachers_name }}  
+	{% if user.is_authenticated %}
+		<a href="{% url 'update_teacher' object.pk %}">Edit</a> || 
+		<a href="{% url 'delete_teacher' object.pk %}">Delete</a>
+	{% endif %}
+</div>
+<div class="container alert alert-secondary" style="border-radius:10px">
+	<div class="container alert alert-primary" style="text-align:left;border-radius:20px">
+		<b><p>More about {{ object.Teachers_name }}<br> </b></p>
+		<b>DESIGNATION : </b>{{ object.Designation }}<br>	
+		<b>SUBJECTS : </b>{{ object.Teachers_first_subject }}
+			|| {{ object.Teachers_second_subject }}<br>
+		<b>EMPLOYER : </b>{{ object.Employer }}<br>
+		<b>GENDER :   </b>{{ object.Gender }}<br>
+		<b>UPLOADED ON : </b>{{ object.Record_updated_on }}<br>
+	</div>
+
+{% if object.Teachers_photo %}
+<div style="text-align:center">
+	<img src="{{ object.Teachers_photo.url }}" height="80%" width="80%">
+</div>
+{% endif %}<br>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+	{% extends "base.html" %}
+
+{% block title %} Delete - {{ object.Name_of_department }} {% endblock %}
+{% block content %}
+	<article class="container edit_details" >
+	<div class="btn-primary" style="padding:10px;border-radius:10px;text-align:center">
+	Delete {{ object.Name_of_department }}</div>
+	<hr>
+	  <div class="form-group">
+	    <form method="POST">
+		  {% csrf_token %}
+		  
+		  <div style="max-width:500px;margin:auto"><strong style="margin-right:100px">Delete {{ object.Name_of_department }}?</strong>
+		  
+		<button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Deletes {{ object.Name_of_department }}" onclick="return confirm('{{ object.Name_of_department }} will be deleted')">Yes</button>
+		 <a href="{% url 'department_details' object.pk %}" class="btn btn-danger" style="float:right">
+		 	<i class="fa fa-arrow-up"></i> No</a>
+		 </div>
+	</form>
+	
+	  </div>
+	</article>
+{% endblock %}

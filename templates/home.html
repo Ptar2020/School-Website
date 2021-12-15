@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} FGUGS || Home {% endblock %}
+{% block content %}
+<div id="main_home_div" style="width:97%">
+  	<div class="row" id="entrance">
+  		<div class="part1 alert alert-secondary" role="alert">
+			<span><i><b>Latest Events</b></i></span>
+			{% if user.is_authenticated %}
+				<a href="{% url 'add_event' %}" style="float:right" title="Add event">
+					<i class="fa fa-plus"></i> Event</a>
+			{% endif %}
+			<small><hr>
+			{% for event in events %}
+			<b>Event occurs on : </b>{% if event.event_date %}{{ event.event_date }} {% endif %}<br>
+			{% if event.event_title %}<h6>Event Title : {{ event.event_title }}</h6>{% endif %}
+			<a href="{% url 'event_details' event.pk %}" style="color:brown;font-size:16px"><b>See details</b></a><hr>
+			{% empty %}<br>
+			<h6 style="color:blue" class="alert alert-secondary" role="alert"><i>No Events to display</i></h6>
+			{% endfor %}
+			</small>
+		</div>
+  		<div class="part2">
+			<main role="main">
+		  		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		    		<div class="carousel-inner">
+		      			<div class="carousel-item active">
+		      				{% if photos %}
+		       				{% for photo in photos %}
+			       				{% if photo.photo1.url %}
+		        				<a href="#"><img src="{{ photo.photo1.url }}" height="78%" width="100%"/ style="object-fit:cover"></a>
+		        				{% endif %}
+		        			<div class="container">
+		          				<div class="carousel-caption text-center">
+					            {% if photo.photo1_Description %}
+					            <h3>{{ photo.photo1_Description }}</h3>
+					            {% endif %}
+		          				</div>
+		        			</div>
+		        			{% endfor %}
+		        			{% endif %}
+		      			</div>
+
+		    			<div class="carousel-item">
+		    				{% if photos %}
+				      		{% for photo in photos %}
+				        		{% if photo.photo2.url %}
+			        				<a href="#"><img src="{{ photo.photo2.url }}" height="78%" width="100%"/ style="object-fit:cover"></a>
+			        			{% endif %}
+			        		<div class="container">
+			          			<div class="carousel-caption text-center">
+					          		{% if photo.photo2_Description %}
+					            		<h3>{{ photo.photo2_Description }}</h3>
+					            	{% endif %}
+			          			</div>
+			        		</div>
+			        			{% endfor %}
+			        			{% endif %}
+		    			</div>
+		      			<div class="carousel-item">
+		      				{% if photos %}
+					        {% for photo in photos %}
+					        	{% if photo.photo3.url %}
+				        			<a href="#"><img src="{{ photo.photo3.url }}" height="78%" width="100%"/ style="object-fit:cover"></a>
+				        		{% endif %}
+				        		<div class="container">
+				          			<div class="carousel-caption text-center">
+							            {% if photo.photo3_Description %}
+							            <h3>{{ photo.photo3_Description }}</h3>
+							            {% endif %}
+				          			</div>
+				          		{% endfor %}
+				          		{% endif %}
+		        				</div>
+		      			</div>
+		    			<div class="carousel-item">
+		    				{% if photos %}
+					        {% for photo in photos %}
+					        	{% if photo.photo4.url %}
+				        			<a href="#"><img src="{{ photo.photo4.url }}" height="78%" width="100%"/ style="object-fit:cover"></a>
+				        		{% endif %}
+		        			<div class="container">
+		          				<div class="carousel-caption text-center">
+					            	{% if photo.photo4_Description %}
+					            		<h3>{{ photo.photo4_Description }}</h3>
+					            	{% endif %}
+		          				</div>
+		          			{% endfor %}
+		          			{% endif %}
+		        			</div>
+		      			</div>
+		    			<div class="carousel-item">
+		    				{% if photos %}
+				       		{% for photo in photos %}
+				        		{% if photo.photo5.url %}
+			        				<a href="#"><img src="{{ photo.photo5.url }}" height="78%" width="100%"/ style="object-fit:cover"></a>
+			        			{% endif %}
+		        			<div class="container">
+		          				<div class="carousel-caption text-center">
+					            	{% if photo.photo5_Description %}
+					            		<h3>{{ photo.photo5_Description }}</h3>
+					            	{% endif %}
+		          				</div>
+		        			</div>
+		        			{% endfor %}
+		        			{% endif %}
+		    			</div>
+		  			</div>
+		  		</div>
+			</main>	
+		</div>
+		<div class="part3 alert alert-secondary" role="alert">
+			<i><b><i class="fa fa-download"></i> Downloads</b></i>  
+			<span><br>
+				<a href="{% url 'all_downloads' %}">View All</a>
+			</span>
+			{% if user.is_authenticated %}
+			<a href="{% url 'add_file' %}" style="float:right">
+				<i class="fa fa-plus"></i> Add File</a>
+			{% endif %}<hr>
+			{% for item in file %}				
+			<small>
+				<a href="{{ item.File.url }}"><b>{{ item.File_Name }}</b></a>
+			</small><br>
+			{% if user.is_authenticated %}
+				<a href="{% url 'update_file' item.id %}">Edit</a> || 
+				<a href="{% url 'delete_file' item.id %}">Delete</a>
+			{% endif %}
+			<hr>
+			{% empty %}<br>
+			<h6 style="color:blue" class="alert alert-secondary" role="alert"><i>No files uploaded yet</i></h6>
+			{% endfor %}
+		</div>
+	</div></div>
+</div><hr style="border:solid black 2px;">
+	<!--Administration area-->
+	<div class="container-fluid admin_area_starts">
+	  	<div style="padding:4px;color:blue " class="admin2"><b>ADMINISTRATION</b>
+			{% if user.is_authenticated %}
+				<a href="{% url 'add_administer' %}"> -  New Administrator  </a>
+			{% endif %}
+	  	</div>
+	  	
+		<div class="alert alert-secondary admin_main">
+			{% for item in administer %}
+			<div class="admin_photo">
+			
+				{% if item.Photo %}
+	          		<a href="{% url 'admin_detail' item.pk %}"><img class="rounded-circle" src="{{ item.Photo.url }}" width="220px" height="220px" style="object-fit:cover"></a><br>
+	        	{% else %}
+					<a href="{% url 'admin_detail' item.pk %}"><img src="{% static 'images/pict.png' %}" height="220px" width="220px" style="object-fit:cover"></a><br>
+	          	{% endif %}<hr>
+	        	<h4>{{ item.Designation }}</h4>
+				<b>{{ item.Name }}</b><br>
+				<!--Gender: <b>{{ item.gender }}</b>--><br>
+
+				<p>
+					<a href="{% url 'admin_detail' item.pk %}" class="btn btn-outline-primary btn-lg">Read More</a><hr>
+				</p>
+			
+			</div>
+			{% endfor %}
+		</div>
+		
+	</div></div>
+	
+{% endblock %}

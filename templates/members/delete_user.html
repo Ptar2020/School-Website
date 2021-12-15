@@ -1,0 +1,22 @@
+	{% extends "base.html" %}
+
+{% block title %} FGUGS || Delete User {% endblock %}
+{% block content %}
+	<article class="container" >
+	<div class="btn-primary" style="padding:10px;border-radius:10px">Delete User</div>
+	<hr>
+	  <div class="form-group">
+	    <form method="POST">
+		  {% csrf_token %}
+		  
+		  <div style="max-width:500px;margin:auto"><strong style="margin-right:70px">Delete {{ user.first_name }} {{ user.last_name }}?</strong>
+		
+		 <a href="{% url 'users' %}" class="btn btn-primary" title="Takes you back to users"><i class="fa fa-arrow-left"></i> Back</a>
+
+		 <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Deletes the user" onclick="return confirm('This user will be deleted')"  style="float:right">Yes</button>
+		 </div>
+	</form>
+	
+	  </div>
+	</article>
+{% endblock %}
